@@ -1,9 +1,9 @@
 CXX=c++
 CPPFLAGS=-Wall -Werror -Wextra -std=c++98 -Wshadow-all
 RM=rm -rf
-SRC=Cat.cpp Dog.cpp Animal.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
+SRC=main.cpp Bureaucrat.cpp
 OBJS=$(SRC:%.cpp=%.o)
-NAME=Polymorphism
+NAME=Bureaucrat
 
 all: $(NAME)
 

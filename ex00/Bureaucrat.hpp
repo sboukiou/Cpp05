@@ -18,6 +18,19 @@ class Bureaucrat {
 		void	setGrade(const unsigned int &param);
 		void	incrementGrade(void);
 		void	decrementGrade(void);
+		// Nested Classes for the Exceptions
+		class GradeTooHighException: public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+
+		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 };
+
+void	operator<<(std::ostream &st, const Bureaucrat &b);
 
 #endif
