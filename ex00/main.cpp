@@ -4,7 +4,6 @@
 void testBasicFunc(void) {
 	std::cout << "\n\n##############################\n";
 	Bureaucrat lilJeffy;
-	lilJeffy.setName("lilJeffy");
 	Bureaucrat MadKing("MadKing", 88);
 	Bureaucrat copyKing(MadKing);
 
@@ -31,7 +30,6 @@ void testBasicFunc(void) {
 void testErrorCatch(void) {
 	std::cout << "\n\n##############################\n";
 	Bureaucrat lilCatch;
-	lilCatch.setName("lilCatch");
 	Bureaucrat madThrow("madThrow", 88);
 	Bureaucrat copyMad(madThrow);
 
@@ -47,11 +45,16 @@ void testErrorCatch(void) {
 	std::cout << "----------------\n";
 	try
 	{
-		lilCatch.setGrade(-999);
+		lilCatch.setGrade(999);
 	}
 	catch (std::exception & e)
 	{
 		std::cout << "Catched: " << e.what() << std::endl; 
+		std::cout
+			<< "Tired to set a grade of "
+			<< lilCatch.getGrade()
+			<< "to the value: "
+			<< 999 << std::endl;
 	}
 	try
 	{
@@ -60,6 +63,11 @@ void testErrorCatch(void) {
 	catch (std::exception & e)
 	{
 		std::cout << "Catched: " << e.what() << std::endl;
+		std::cout
+			<< "Tired to set a grade of "
+			<< madThrow.getGrade()
+			<< "to the value: "
+			<< -999 << std::endl;
 	}
 
 	std::cout << "\n----------------\n";
@@ -67,11 +75,23 @@ void testErrorCatch(void) {
 
 }
 
+void	testOstreamOverload(void) {
+	Bureaucrat DadUser("Dad", 0);
+	Bureaucrat MomUser("Mom", 0);
+	Bureaucrat ChildUser("Child", 0);
+
+	std::cout << DadUser;
+	std::cout << MomUser;
+	std::cout << ChildUser;
+}
+
+
 
 int main(void) {
 
 	testBasicFunc();
 	testErrorCatch();
+	testOstreamOverload();
 
 	return (0);
 }
