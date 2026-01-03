@@ -28,4 +28,4 @@ classes that are derived from std::exception**
 **[What is an Exception Class ?](https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d)**\
 **[Use of exceptions C++](https://www.geeksforgeeks.org/cpp/exception-handling-using-classes-in-cpp/)**
 **[Exception Classes and Inheritance](https://www.learncpp.com/cpp-tutorial/exceptions-classes-and-inheritance/)**
-
+**[Throw/noexcept keyword ?!](https://stackoverflow.com/questions/22493294/what-is-the-meaning-of-this-header-virtual-const-char-what-const-throw)**
