@@ -23,6 +23,9 @@ classes that are derived from std::exception**
 <br>
 
 ## Resources:
+
+**[Why would You use exceptions? (And more)](https://isocpp.org/wiki/faq/exceptions)**\
 **[What is an Exception Class ?](https://medium.com/@hixcoder/exception-classes-in-c-b57ecc8a7f2d)**\
-**[Implementing C++ exceptions](https://www.geeksforgeeks.org/cpp/exception-handling-using-classes-in-cpp/)**
-**[Use of Exceptions](https://www.learncpp.com/cpp-tutorial/exceptions-classes-and-inheritance/)**
+**[Use of exceptions C++](https://www.geeksforgeeks.org/cpp/exception-handling-using-classes-in-cpp/)**
+**[Exception Classes and Inheritance](https://www.learncpp.com/cpp-tutorial/exceptions-classes-and-inheritance/)**
+
