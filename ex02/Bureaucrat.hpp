@@ -1,7 +1,7 @@
 #ifndef  BUREAUCRAT_HPP
 # define  BUREAUCRAT_HPP
 
-class Form;
+class AForm;
 
 #include <string>
 class Bureaucrat {
@@ -19,7 +19,8 @@ class Bureaucrat {
 		void	setGrade(const int &param);
 		void	incrementGrade(void);
 		void	decrementGrade(void);
-		void	signForm(Form &F);
+		void	signForm(AForm &F);
+		void	executeForm(const AForm &F);
 		// Nested Classes for the Exceptions
 		class GradeTooHighException: public std::exception {
 			public:

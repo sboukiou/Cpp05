@@ -99,6 +99,10 @@ const char*	AForm::AssignToConstException::what() const throw() {
 	return ("[AFormException]: AssignToConst");
 }
 
+const char*	AForm::FormNotSignedException::what() const throw() {
+	return ("[AFormException]: FormNotSigned");
+}
+
 // Overloading the << operator
 
 void operator<<(std::ostream &st, const AForm &F) {

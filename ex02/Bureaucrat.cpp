@@ -1,5 +1,5 @@
 #include "./Bureaucrat.hpp"
-#include "./Form.hpp"
+#include "./AForm.hpp"
 #include <iostream>
 #include <string>
 
@@ -43,7 +43,7 @@ void	Bureaucrat::setGrade(const int &param) {
 	grade = param;
 }
 
-void	Bureaucrat::signForm(Form &F) {
+void	Bureaucrat::signForm(AForm &F) {
 	try {
 		F.beSigned(*this);
 		std::cout << *this;
@@ -82,4 +82,17 @@ void	Bureaucrat::decrementGrade(void) {
 
 void	operator<<(std::ostream &st, const Bureaucrat &b) {
 	st << b.getName() + ", bureaucrat grade " << b.getGrade() << " ";
+}
+
+void	Bureaucrat::executeForm(const AForm &F) {
+	try {
+		F.execute(*this);
+	}
+	catch(std::exception &e) {
+		std::cerr << "Catchd: " << e.what() << std::endl;
+	}
+		std::cout << *this;
+		std::cout << " executed ";
+		std::cout << F;
+		std::cout << "\n";
 }

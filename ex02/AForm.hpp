@@ -24,7 +24,7 @@ class AForm {
 		size_t				getSignGrade() const;
 		size_t				getExecGrade() const;
 		void				beSigned(const Bureaucrat &B);
-		virtual void		execute(const Bureaucrat &Ex) = 0;
+		virtual void		execute(const Bureaucrat &Ex) const = 0;
 
 		// Nested Exceptions derived classes
 		class GradeTooHighException: public std::exception {
@@ -36,6 +36,10 @@ class AForm {
 				const char*	what() const throw();
 		};
 		class AssignToConstException: public std::exception {
+			public:
+				const char*	what() const throw();
+		};
+		class FormNotSignedException: public std::exception {
 			public:
 				const char*	what() const throw();
 		};
