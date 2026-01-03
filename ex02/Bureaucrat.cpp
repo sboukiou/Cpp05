@@ -9,9 +9,9 @@ Bureaucrat::Bureaucrat(void): name("Un-Named"), grade(150) {
 
 Bureaucrat::Bureaucrat(const std::string &param, const size_t &num): name(param), grade(num) {
 	if (num < 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (num > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << "[INFO]: (Parameterized Constructor){Bureaucrat}" << std::endl;
 }
 
@@ -37,9 +37,9 @@ const size_t &Bureaucrat::getGrade(void) const {
 }
 void	Bureaucrat::setGrade(const int &param) {
 	if (param < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (param > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	grade = param;
 }
 
@@ -70,13 +70,13 @@ void	Bureaucrat::incrementGrade(void) {
 	if (grade > 0)
 		grade -= 1;
 	else
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 }
 void	Bureaucrat::decrementGrade(void) {
 	if (grade < 150)
 		grade += 1;
 	else
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 

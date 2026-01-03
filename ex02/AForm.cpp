@@ -21,13 +21,13 @@ AForm::AForm(const std::string &str, const int signG, const int execG):
 	execGrade(execG)
 {
 	if (signG > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (signG < 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (execG > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (execG < 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	std::cout << "[INFO]: (Parameterized Construction){AForm}\n";
 };
 
@@ -38,13 +38,13 @@ AForm::AForm(const AForm &other):
 	execGrade(other.getExecGrade())
 {
 	if (other.getSignGrade() > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (other.getSignGrade() < 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (other.getExecGrade() > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (other.getExecGrade() < 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	std::cout << "[INFO]: (Copy Construction){AForm}\n";
 };
 
@@ -81,7 +81,7 @@ void	AForm::beSigned(const Bureaucrat &B) {
 	if (B.getGrade() <= signGrade)
 		isSigned = true;
 	else
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 
