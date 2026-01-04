@@ -7,7 +7,7 @@ Bureaucrat::Bureaucrat(void): name("Un-Named"), grade(150) {
 	std::cout << "[INFO]: (Default Constructor){Bureaucrat}" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string &param, const size_t &num): name(param), grade(num) {
+Bureaucrat::Bureaucrat(const std::string &param, const int &num): name(param), grade(num) {
 	if (num < 0)
 		throw Bureaucrat::GradeTooHighException();
 	if (num > 150)
@@ -27,6 +27,7 @@ void	Bureaucrat::operator=(const Bureaucrat &other) {
 		return ;
 	grade = other.getGrade();
 	std::cout << "[INFO]: (Assignment operator overload){Bureaucrat}" << std::endl;
+	std::cout << "[WARN]: (Name is constant , only the grade is changed){Bureaucrat}" << std::endl;
 }
 
 const std::string &Bureaucrat::getName(void) const {
@@ -52,9 +53,9 @@ void	Bureaucrat::signForm(AForm &F) {
 	}
 	catch (std::exception &e) {
 		std::cout << *this;
-		std::cout << "couldn’t sign ";
+		std::cout << " couldn’t sign ";
 		std::cout << F;
-		std::cout << "because ";
+		std::cout << " because ";
 		std::cout << e.what();
 	}
 }
@@ -87,12 +88,16 @@ void	operator<<(std::ostream &st, const Bureaucrat &b) {
 void	Bureaucrat::executeForm(const AForm &F) {
 	try {
 		F.execute(*this);
-	}
-	catch(std::exception &e) {
-		std::cerr << "Catchd: " << e.what() << std::endl;
-	}
 		std::cout << *this;
 		std::cout << " executed ";
 		std::cout << F;
 		std::cout << "\n";
+	}
+	catch(std::exception &e) {
+		std::cout << *this;
+		std::cout << " couldn't execute the form:  ";
+		std::cout << F;
+		std::cout << " beacuse of : ";
+		std::cerr  << e.what() << std::endl;
+	}
 }

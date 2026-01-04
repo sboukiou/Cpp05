@@ -44,7 +44,11 @@ void	RobotomyRequestForm::setTarget(const std::string &param) {
 void	RobotomyRequestForm::execute(const Bureaucrat &Ex) const {
 	if (AForm::getSignature() == false)
 		throw FormNotSignedException();;
-	if (Ex.getGrade() > AForm::getExecGrade())
+	if (Ex.getGrade() > AForm::getExecGrade()) {
+		std::cout << "robotomy: " << *this;
+		std::cout << " failed\n";
 		throw Bureaucrat::GradeTooLowException();
-	std::cout << target << " has been robotomized successfully 50% of the time. \n";
+	}
+	std::cout << target << "Drrrrrrrrrrrrrrilling noiiiiiise !!!!\n";
+	std::cout << target << " has been robotomized successfully 50\% of the time. \n";
 }

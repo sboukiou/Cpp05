@@ -48,7 +48,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &Ex) const {
 	if (Ex.getGrade() > AForm::getExecGrade())
 		throw Bureaucrat::GradeTooLowException();
 
-	std::ofstream outFile((target + "[ShrubberyCreationForm]").c_str());
+	std::ofstream outFile((target + ".scf").c_str());
 
 	outFile << "       _-_\n";
 	outFile << "    /~~   ~~\\\n";

@@ -78,6 +78,8 @@ size_t	AForm::getSignGrade(void) const {
 }
 
 void	AForm::beSigned(const Bureaucrat &B) {
+	if (isSigned == true)
+		throw AForm::FormAlreadySignedException();
 	if (B.getGrade() <= signGrade)
 		isSigned = true;
 	else
@@ -102,10 +104,13 @@ const char*	AForm::AssignToConstException::what() const throw() {
 const char*	AForm::FormNotSignedException::what() const throw() {
 	return ("[AFormException]: FormNotSigned");
 }
+const char*	AForm::FormAlreadySignedException::what() const throw() {
+	return ("[AFormException]: FormAlreadySigned");
+}
 
 // Overloading the << operator
 
 void operator<<(std::ostream &st, const AForm &F) {
 	st << "AForm-Name:" + F.getName() + " |  Signature: " + (F.getSignature() ? "Yes" : "No")
-		+ " |  SignGrade: " << F.getSignGrade() << " |  ExecGrade: " << F.getExecGrade() << std::endl;
+		+ " |  SignGrade: " << F.getSignGrade() << " |  ExecGrade: " << F.getExecGrade();
 }

@@ -60,7 +60,6 @@ AForm*	Intern::makeForm(const std::string &formName, const std::string &targetNa
 		, "ShrubberyCreationForm", "RobotomyRequestForm"};
 	for (int i = 0; i < 3; i += 1) {
 		if (targetName == FormsLabels[i]) {
-			std::cout << "Found it \n";
 			form = genericForm[i](targetName);
 			if (form == NULL) {
 				std::cerr << "Failed to make the form " << formName << std::endl;

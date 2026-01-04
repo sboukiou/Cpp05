@@ -10,7 +10,7 @@ class Bureaucrat {
 		size_t	grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string &param, const size_t &num);
+		Bureaucrat(const std::string &param, const int &num);
 		Bureaucrat(const Bureaucrat &other);
 		~Bureaucrat();
 		void	operator=(const Bureaucrat &other);
