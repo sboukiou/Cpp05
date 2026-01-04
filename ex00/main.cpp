@@ -2,23 +2,26 @@
 #include "./Bureaucrat.hpp"
 
 void testBasicFunc(void) {
-	std::cout << "\n\n##############################\n";
-	Bureaucrat lilJeffy;
-	Bureaucrat MadKing("MadKing", 88);
-	Bureaucrat copyKing(MadKing);
+	std::cout << "\n\n############ Testing Basic functions of the Bureacrat ##################\n";
+	Bureaucrat *lilJeffy = new Bureaucrat();;
+	Bureaucrat *MadKing = new Bureaucrat("MadKing", 88);
+	Bureaucrat *copyKing = new Bureaucrat(*MadKing);
 
 	std::cout << "\nNames :\n";
 	std::cout << "----------------\n";
-	std::cout << lilJeffy.getName() << std::endl;
-	std::cout << MadKing.getName() << std::endl;
-	std::cout << copyKing.getName() << std::endl;
+	std::cout << lilJeffy->getName() << std::endl;
+	std::cout << MadKing->getName() << std::endl;
+	std::cout << copyKing->getName() << std::endl;
 	std::cout << "\n----------------\n";
 
 	std::cout << "\nGrades :\n";
 	std::cout << "----------------\n";
-	std::cout << lilJeffy.getGrade() << std::endl;
-	std::cout << MadKing.getGrade() << std::endl;
-	std::cout << copyKing.getGrade() << std::endl;
+	std::cout << lilJeffy->getGrade() << std::endl;
+	std::cout << MadKing->getGrade() << std::endl;
+	std::cout << copyKing->getGrade() << std::endl;
+	delete lilJeffy;
+	delete MadKing;
+	delete copyKing;
 	std::cout << "\n----------------\n";
 	std::cout << "##############################\n";
 
@@ -28,16 +31,16 @@ void testBasicFunc(void) {
 
 
 void testErrorCatch(void) {
-	std::cout << "\n\n##############################\n";
-	Bureaucrat lilCatch;
-	Bureaucrat madThrow("madThrow", 88);
-	Bureaucrat copyMad(madThrow);
+	std::cout << "\n\n############ Testing the Exceptions throwing and Catching ##################\n";
+	Bureaucrat *lilCatch = new Bureaucrat();
+	Bureaucrat *madThrow = new Bureaucrat("madThrow", 88);
+	Bureaucrat *copyMad =  new Bureaucrat(*madThrow);
 
 	std::cout << "\nData :\n";
 	std::cout << "----------------\n";
-	std::cout << lilCatch;
-	std::cout << madThrow;
-	std::cout << copyMad;
+	std::cout << *lilCatch;
+	std::cout << *madThrow;
+	std::cout << *copyMad;
 	std::cout << "\n----------------\n";
 
 
@@ -45,44 +48,53 @@ void testErrorCatch(void) {
 	std::cout << "----------------\n";
 	try
 	{
-		lilCatch.setGrade(999);
+		lilCatch->setGrade(999);
 	}
 	catch (std::exception & e)
 	{
 		std::cout << "Catched: " << e.what() << std::endl; 
 		std::cout
-			<< "Tired to set a grade of "
-			<< lilCatch.getGrade()
-			<< "to the value: "
-			<< 999 << std::endl;
+			<< "Tried to set a grade of {"
+			<< 999
+			<< "} to the value: "
+			<< lilCatch->getGrade() << std::endl;
 	}
 	try
 	{
-		madThrow.setGrade(-999);
+		madThrow->setGrade(-999);
 	}
 	catch (std::exception & e)
 	{
 		std::cout << "Catched: " << e.what() << std::endl;
 		std::cout
-			<< "Tired to set a grade of "
-			<< madThrow.getGrade()
-			<< "to the value: "
-			<< -999 << std::endl;
+			<< "Tried to set a grade of {"
+			<< -999
+			<< "} to the value: "
+			<< madThrow->getGrade() << std::endl;
 	}
 
+	std::cout << lilCatch;
+	std::cout << madThrow;
+	std::cout << copyMad;
 	std::cout << "\n----------------\n";
 	std::cout << "##############################\n";
 
 }
 
 void	testOstreamOverload(void) {
-	Bureaucrat DadUser("Dad", 0);
-	Bureaucrat MomUser("Mom", 0);
-	Bureaucrat ChildUser("Child", 0);
+	std::cout << "\n\n############ Testing the O-stream overloading ##################\n";
+	Bureaucrat *DadUser = new Bureaucrat("Dad", 0);
+	Bureaucrat *MomUser = new Bureaucrat("Mom", 0);
+	Bureaucrat *ChildUser = new Bureaucrat("Child", 0);
 
-	std::cout << DadUser;
-	std::cout << MomUser;
-	std::cout << ChildUser;
+	std::cout << *DadUser;
+	std::cout << *MomUser;
+	std::cout << *ChildUser;
+	delete DadUser;
+	delete MomUser;
+	delete ChildUser;
+	std::cout << "\n----------------\n";
+	std::cout << "##############################\n";
 }
 
 
