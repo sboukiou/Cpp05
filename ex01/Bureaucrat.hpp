@@ -1,8 +1,7 @@
 #ifndef  BUREAUCRAT_HPP
 # define  BUREAUCRAT_HPP
 
-class Form;
-
+#include "./Form.hpp"
 #include <string>
 class Bureaucrat {
 	private:
@@ -10,7 +9,7 @@ class Bureaucrat {
 		size_t	grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string &param, const size_t &num);
+		Bureaucrat(const std::string &param, const int &num);
 		Bureaucrat(const Bureaucrat &other);
 		~Bureaucrat();
 		void	operator=(const Bureaucrat &other);

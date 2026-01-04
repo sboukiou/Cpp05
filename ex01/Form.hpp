@@ -38,6 +38,10 @@ class Form {
 			public:
 				const char*	what() const throw();
 		};
+		class FormAlreadySignedException: public std::exception {
+			public:
+				const char*	what() const throw();
+		};
 };
 
 // Overloading the << operator

@@ -5,7 +5,7 @@
 // The OCF Implementation
 
 Form::Form(void):
-	name("Default-Form"),
+	name("Unspecified-Form"),
 	isSigned(false),
 	signGrade(150),
 	execGrade(150)
@@ -20,6 +20,7 @@ Form::Form(const std::string &str, const int signG, const int execG):
 	signGrade(signG),
 	execGrade(execG)
 {
+	std:: cout << signGrade << "|" << execGrade << std::endl;
 	if (signG > 150)
 		throw GradeTooLowException();
 	else if (signG < 0)
@@ -32,11 +33,12 @@ Form::Form(const std::string &str, const int signG, const int execG):
 };
 
 Form::Form(const Form &other):
-	name(other.getName()),
+	name(other.getName() + "_copy"),
 	isSigned(other.getSignature()),
 	signGrade(other.getSignGrade()),
 	execGrade(other.getExecGrade())
 {
+	std:: cout << signGrade << "|" << execGrade << std::endl;
 	if (other.getSignGrade() > 150)
 		throw GradeTooLowException();
 	else if (other.getSignGrade() < 0)
@@ -56,6 +58,7 @@ void	Form::operator=(const Form &other) {
 	std::cout << "[INFO]: ({=} Operator Overload){Form}\n";
 	if (this == &other)
 		return ;
+	std::cout << "[WARN]: Trying to assign a form to another\n";
 	throw AssignToConstException();
 }
 
@@ -78,6 +81,8 @@ size_t	Form::getSignGrade(void) const {
 }
 
 void	Form::beSigned(const Bureaucrat &B) {
+	if (isSigned == true)
+		throw FormAlreadySignedException();
 	if (B.getGrade() <= signGrade)
 		isSigned = true;
 	else
@@ -88,15 +93,19 @@ void	Form::beSigned(const Bureaucrat &B) {
 // Exceptions Implementations
 
 const char*	Form::GradeTooHighException::what() const throw() {
-	return ("[FormException]: GradeTooHigh");
+	return ("[FormException]: Grade is Too High");
 }
 
 const char*	Form::GradeTooLowException::what() const throw() {
-	return ("[FormException]: GradeTooLow");
+	return ("[FormException]: Grade is Too Low");
 }
 
 const char*	Form::AssignToConstException::what() const throw() {
-	return ("[FormException]: AssignToConst");
+	return ("[FormException]: Assigning To Constant member");
+}
+
+const char*	Form::FormAlreadySignedException::what() const throw() {
+	return ("[FormException]: Form is Already signed");
 }
 
 // Overloading the << operator

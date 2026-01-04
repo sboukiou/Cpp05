@@ -1,119 +1,75 @@
 #include <iostream>
 #include "./Bureaucrat.hpp"
-#include "Form.hpp"
 
-void testBasicFunc(void) {
-	std::cout << "\n\n##############################\n";
-	Bureaucrat lilJeffy;
-	Bureaucrat MadKing("MadKing", 88);
-	Bureaucrat copyKing(MadKing);
-
-	std::cout << "\nNames :\n";
-	std::cout << "----------------\n";
-	std::cout << lilJeffy.getName() << std::endl;
-	std::cout << MadKing.getName() << std::endl;
-	std::cout << copyKing.getName() << std::endl;
-	std::cout << "\n----------------\n";
-
-	std::cout << "\nGrades :\n";
-	std::cout << "----------------\n";
-	std::cout << lilJeffy.getGrade() << std::endl;
-	std::cout << MadKing.getGrade() << std::endl;
-	std::cout << copyKing.getGrade() << std::endl;
-	std::cout << "\n----------------\n";
-	std::cout << "##############################\n";
-
-
-}
-
-
-
-void testErrorCatch(void) {
-	std::cout << "\n\n##############################\n";
-	Bureaucrat lilCatch;
-	Bureaucrat madThrow("madThrow", 88);
-	Bureaucrat copyMad(madThrow);
-
-	std::cout << "\nData :\n";
-	std::cout << "----------------\n";
-	std::cout << lilCatch;
-	std::cout << madThrow;
-	std::cout << copyMad;
-	std::cout << "\n----------------\n";
-
-
-	std::cout << "\nsetting wrong Grades :\n";
-	std::cout << "----------------\n";
-	try
-	{
-		lilCatch.setGrade(999);
+void testFormsBureaucrats(void) {
+	std::cout << "----------------Testing Basic Initializations---------------\n";
+		Form	*EmptyForm = new Form();
+		Form *idForm = NULL;
+		try {
+			idForm = new Form("IdForm", 138, 1100);
+		}
+		catch (Form::GradeTooHighException &e) {
+			std::cout << "[CATCH]: "<< e.what() << std::endl;
+			delete idForm;
+			idForm = new Form("IdForm", 0, 100);
+		}
+		catch (Form::GradeTooLowException &e) {
+			std::cout << "[CATCH]: "<< e.what() << std::endl;
+			delete idForm;
+			idForm = new Form("IdForm", 138, 100);
+		}
+	Form	*idFormRetry = new Form(*idForm);
+	try {
+		*EmptyForm = *idForm;
 	}
-	catch (std::exception & e)
-	{
-		std::cout << "Catched: " << e.what() << std::endl; 
-		std::cout
-			<< "Tired to set a grade of "
-			<< lilCatch.getGrade()
-			<< "to the value: "
-			<< 999 << std::endl;
-	}
-	try
-	{
-		madThrow.setGrade(-999);
-	}
-	catch (std::exception & e)
-	{
-		std::cout << "Catched: " << e.what() << std::endl;
-		std::cout
-			<< "Tired to set a grade of "
-			<< madThrow.getGrade()
-			<< "to the value: "
-			<< -999 << std::endl;
+	catch (Form::AssignToConstException &e) {
+			std::cout << "[CATCH]: "<< e.what() << std::endl;
 	}
 
-	std::cout << "\n----------------\n";
-	std::cout << "##############################\n";
 
+	Bureaucrat *CouncelAgent = new Bureaucrat("Councel-Agent", 100);
+	Bureaucrat *fakeAgent = new Bureaucrat("fake-Agent", 150);
+
+	std::cout << *EmptyForm;
+	std::cout << std::endl;
+	std::cout << *idForm;
+	std::cout << std::endl;
+	std::cout << *idFormRetry;
+	std::cout << std::endl;
+	std::cout << *CouncelAgent;
+	std::cout << std::endl;
+
+
+
+
+
+	std::cout << "\n\n\n----------------Testing Forms Signing---------------\n";
+
+	std::cout << "Trying to sign with low grade BT:\n";
+	fakeAgent->signForm(*idFormRetry);
+	std::cout << "-------------\n";
+	std::cout << "Trying to sign with valid grade BT:\n";
+	CouncelAgent->signForm(*idForm);
+	std::cout << "-------------\n";
+	std::cout << "Trying to sign already signed form with valid grade BT:\n";
+	CouncelAgent->signForm(*idForm);
+	std::cout << "-------------\n";
+	std::cout << "Trying to sign already signed form with low grade BT:\n";
+	fakeAgent->signForm(*idForm);
+	std::cout << "-------------\n";
+
+
+	delete idForm;
+	delete EmptyForm;
+	delete idFormRetry;
+	delete  CouncelAgent;
 }
 
-void	testOstreamOverload(void) {
-	Bureaucrat DadUser("Dad", 0);
-	Bureaucrat MomUser("Mom", 0);
-	Bureaucrat ChildUser("Child", 0);
-
-	std::cout << DadUser;
-	std::cout << MomUser;
-	std::cout << ChildUser;
-}
-
-
-void	testFormClass() {
-
-	Bureaucrat Agent("Allal", 5);
-	Bureaucrat fakeAgent("Lmadani", 100);
-	Form Id("Id", 12, 12);
-	Form driverLicense("D-License", 12, 12);
-	std::cout << "Forms:\n";
-	std::cout << Id;
-	std::cout << driverLicense;
-	std::cout << "Bureaucrats:\n";
-	std::cout << Agent;
-	std::cout << fakeAgent;
-	std::cout << "\n------------\n";
-	Agent.signForm(Id);
-	fakeAgent.signForm(driverLicense);
-
-
-
-}
 
 
 int main(void) {
 
-	// testBasicFunc();
-	// testErrorCatch();
-	// testOstreamOverload();
-	testFormClass();
+	testFormsBureaucrats();
 
 	return (0);
 }
