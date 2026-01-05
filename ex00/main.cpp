@@ -39,8 +39,11 @@ void testErrorCatch(void) {
 	std::cout << "\nData :\n";
 	std::cout << "----------------\n";
 	std::cout << *lilCatch;
+	std::cout << std::endl;
 	std::cout << *madThrow;
+	std::cout << std::endl;
 	std::cout << *copyMad;
+	std::cout << std::endl;
 	std::cout << "\n----------------\n";
 
 
@@ -73,9 +76,12 @@ void testErrorCatch(void) {
 			<< madThrow->getGrade() << std::endl;
 	}
 
-	std::cout << lilCatch;
-	std::cout << madThrow;
-	std::cout << copyMad;
+	std::cout << *lilCatch;
+	std::cout << std::endl;
+	std::cout << *madThrow;
+	std::cout << std::endl;
+	std::cout << *copyMad;
+	std::cout << std::endl;
 	std::cout << "\n----------------\n";
 	std::cout << "##############################\n";
 
